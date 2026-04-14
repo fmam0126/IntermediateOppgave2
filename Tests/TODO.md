@@ -1,0 +1,1 @@
+- make generic tests and test for multiple types.
