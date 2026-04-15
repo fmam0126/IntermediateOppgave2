@@ -9,15 +9,27 @@ public class StackTests
     public void TestCreateStack()
     {
         // Act
-        var TestStack = new Stacks<int>(10);
+        var TestStack = new CustomStack<int>(10);
         // Assert
         Assert.NotNull(TestStack);
+    }
+    [Fact]
+    public void TestPushItem()
+    {
+        // Arrange
+        var TestStack = new CustomStack<int>(10);
+
+        // Act
+        TestStack.Push(67);
+
+        // Assert
+        Assert.Equal(67, TestStack.Pop());
     }
     [Fact]
     public void TestPushPopItem()
     {
         // Arrange
-        var TestStack = new Stacks<int>(10);
+        var TestStack = new CustomStack<int>(10);
 
     
         // Act
@@ -32,7 +44,7 @@ public class StackTests
     public void TestPopEmptyStackThrowsIndexOutOfRangeException()
     {
         // Arrange
-        var TestStack = new Stacks<int>(10);
+        var TestStack = new CustomStack<int>(10);
 
         // Act
         
@@ -44,7 +56,7 @@ public class StackTests
     public void TestPushOverflowThrowsIndexOutOfRangeException()
     {
         // Arrange
-        var TestStack = new Stacks<int>(2);
+        var TestStack = new CustomStack<int>(2);
 
         // Act
         TestStack.Push(1);

@@ -9,7 +9,7 @@ class Program
         var ageList = new Repository<int>();
         var nameList = new Repository<string>();
 
-        var stack = new Stacks<string>(5);
+        var stack = new CustomStack<string>(5);
 
         nameList.Add("Gamer");
         ageList.Add(44);

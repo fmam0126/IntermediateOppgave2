@@ -3,7 +3,7 @@ using OppgaveGeneriskeTyper.interfaces;
 
 namespace OppgaveGeneriskeTyper.Classes;
 
-public class Stacks<T>(int stackSize) : IPushable<T>, IPoppable<T>
+public class CustomStack<T>(int stackSize) : IPushable<T>, IPoppable<T>
 {
     private int _position;
     private T[] _stack = new T[stackSize];
