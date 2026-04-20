@@ -38,15 +38,15 @@ public class RepositoryTests
         // Arrange
         var repository = new Repository<int>();
 
-        
+
         // Act
-        repository.Add(67); 
-        repository.Add(68);
+        repository.Add(67);
+        repository.Add(67);
         repository.Add(69);
 
         // Assert
         Assert.Equal(67, repository.GetById(0));
-        Assert.Equal(68, repository.GetById(1));
+        Assert.Equal(67, repository.GetById(1));
         Assert.Equal(69, repository.GetById(2));
 
     }
@@ -63,7 +63,7 @@ public class RepositoryTests
         // Act 
 
         repository.Remove(68);
-        
+
         // Assert
         var all = repository.GetAll().ToList();
 
@@ -117,9 +117,36 @@ public class RepositoryTests
         // Act
         repository.Add("Python");
         repository.Add("Javascript");
-    
+
         // Assert
         Assert.Throws<IndexOutOfRangeException>(() => repository.Update("Rust", 2));
 
+    }
+    [Fact]
+    public void TestRemoveReturnsFalse()
+    {
+        // Arrange
+        var repository = new Repository<string>();
+
+        // Act
+
+        // Assert
+        Assert.False(repository.Remove("NonExistingItem"));
+    }
+    [Fact]
+    public void TestRemoveWhenDuplicateItemsExist()
+    {
+        // Arrange
+        var repository = new Repository<string>();
+        repository.Add("Item1");
+        repository.Add("Item2");
+        repository.Add("Item1"); // Duplicate
+
+        // act
+        var result = repository.Remove("Item1");
+
+        // assert
+        Assert.True(result);
+        Assert.Equal(2, repository.GetAll().Count());
     }
 }
